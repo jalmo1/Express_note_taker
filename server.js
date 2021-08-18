@@ -1,25 +1,15 @@
-const fs = require("fs");
-const path = require("path");
 const express = require("express");
-let app = express();
-let notes = require("./db/db.json");
+const apiRoute = require("./routes/api");
+const htmlRoute = require("./routes/html");
 
 // creates local server
 const PORT = process.env.PORT || 3001;
-
-app.use(express.static(__dirname + "/public"));
+let app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-app.get("/api/notes", (req, res) => {
-  let results = notes;
-  if (req.query) {
-    results = filterByQuery(req.query, results);
-  }
-  res.json(results);
-});
-
-app.get("/api/");
+app.use(express.static("public"));
+app.use("/api", apiRoute);
+app.use("/", htmlRoute);
 
 app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
