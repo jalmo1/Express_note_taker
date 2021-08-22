@@ -29,6 +29,8 @@
 
   ## Usage:
   Saving notes
+  
+  Click this link to view the deployed site =>  https://joshs-express-notetaker.herokuapp.com/
 
   ## Contributors:
   JUST ME!!
